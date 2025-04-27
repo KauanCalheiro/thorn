@@ -72,11 +72,11 @@ class User extends Authenticatable {
     public function toArray(): array {
         $array = parent::toArray();
 
-        if (isset($array['roles'])) {
+        if (!isset($array['roles'])) {
             $array['roles'] = $this->getRolesListAttribute();
         }
 
-        if (isset($array['permissions'])) {
+        if (!isset($array['permissions'])) {
             $array['permissions'] = $this->getPermissionsListAttribute();
         }
 
