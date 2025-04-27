@@ -23,7 +23,6 @@ const isDesktop = useMediaQuery("(min-width: 768px)");
     <template #body>
       <div class="flex flex-col gap-4 h-full min-h-[50vh] min-w-[20vw]">
         <ULink href="/user">Usuarios</ULink>
-        <ULink href="/task">Tarefas</ULink>
       </div>
     </template>
     <template #footer>
