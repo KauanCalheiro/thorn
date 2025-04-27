@@ -1,13 +1,17 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MuscleGroupController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RequestLogController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Mail\MyTestEmail;
+use App\Models\MuscleGroup;
+use App\Models\Permission;
 use App\Models\Task;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
@@ -36,12 +40,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('user/{user}/assign/permission', [UserController::class, 'assignPermission']);
     Route::post('user/{user}/revoke/permission', [UserController::class, 'revokePermission']);
 
-    Route::apiResource('task', TaskController::class);
-    Route::get('task/{task}/pdf', [TaskController::class, 'pdf']);
-});
-
-Route::get('/teste', function () {
-    $pdf = Pdf::loadView('pdf_task', ['task' => Task::first()]);
-
-    return $pdf->download('task.pdf');
+    Route::apiResource('muscle-group', MuscleGroupController::class);
 });
