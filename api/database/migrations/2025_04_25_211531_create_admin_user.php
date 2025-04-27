@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\PermissionEnum;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -10,18 +11,23 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        User::create([
-            'name' => 'Kauan',
-            'email' => 'kauan.calheiro@universo.univates.br',
+        $adminUser = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@admin',
             'password' => bcrypt('admin'),
         ]);
 
-        Role::create([
+        $adminRole = Role::create([
             'name' => 'admin',
             'guard_name' => 'web',
-        ]);
+        ])->givePermissionTo(
+                collect(PermissionEnum::cases())->map(fn($permission) => \App\Models\Permission::create([
+                    'name' => $permission->value,
+                    'guard_name' => 'web',
+                ]))
+            );
 
-        User::first()->assignRole('admin');
+        $adminUser->assignRole($adminRole);
     }
 
     /**
