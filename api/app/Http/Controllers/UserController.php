@@ -75,7 +75,7 @@ class UserController extends Controller {
      */
     public function update(UpdateUserRequest $request, User $user) {
         try {
-            $user->update($request->validated());
+            $user->updateOrFail($request->validated());
             return ResponseService::success(data: $user);
         } catch (Exception $e) {
             return ResponseService::error($e);
