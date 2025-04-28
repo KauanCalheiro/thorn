@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HideTimestamps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MuscleGroup extends Model {
-    use SoftDeletes;
+    use SoftDeletes, HideTimestamps;
 
     protected $table = 'muscle_groups';
 
