@@ -9,6 +9,6 @@ use Illuminate\Auth\Access\Response;
 
 class RequestLogPolicy {
     public function viewAny(User $user): bool {
-        return $user->can(PermissionEnum::VIEW_REQUEST_LOGS);
+        return $user->can(PermissionEnum::VIEW_REQUEST_LOG);
     }
 }

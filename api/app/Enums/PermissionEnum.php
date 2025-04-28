@@ -13,7 +13,7 @@ enum PermissionEnum: string {
     case UPDATE_ROLE = 'update_role';
     case DELETE_ROLE = 'delete_role';
 
-    case VIEW_REQUEST_LOGS = 'view_request_logs';
+    case VIEW_REQUEST_LOG = 'view_request_log';
 
     case CREATE_USER = 'create_user';
     case READ_USER = 'read_user';
@@ -24,13 +24,13 @@ enum PermissionEnum: string {
     case ASSIGN_PERMISSION = 'assign_permission';
     case REVOKE_PERMISSION = 'revoke_permission';
 
-    case CREATE_MUSCLE_GROUPS = 'create_muscle_groups';
-    case READ_MUSCLE_GROUPS = 'read_muscle_groups';
-    case UPDATE_MUSCLE_GROUPS = 'update_muscle_groups';
-    case DELETE_MUSCLE_GROUPS = 'delete_muscle_groups';
+    case CREATE_MUSCLE_GROUP = 'create_muscle_group';
+    case READ_MUSCLE_GROUP = 'read_muscle_group';
+    case UPDATE_MUSCLE_GROUP = 'update_muscle_group';
+    case DELETE_MUSCLE_GROUP = 'delete_muscle_group';
 
-    case CREATE_EXERCISES = 'create_exercises';
-    case READ_EXERCISES = 'read_exercises';
-    case UPDATE_EXERCISES = 'update_exercises';
-    case DELETE_EXERCISES = 'delete_exercises';
+    case CREATE_EXERCISE = 'create_exercise';
+    case READ_EXERCISE = 'read_exercise';
+    case UPDATE_EXERCISE = 'update_exercise';
+    case DELETE_EXERCISE = 'delete_exercise';
 }
