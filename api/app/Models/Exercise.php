@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LogsAll;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Storage;
 
 class Exercise extends Model {
-    use SoftDeletes;
+    use SoftDeletes, LogsAll;
 
     public const GIF_PATH = 'exercises/gifs';
 

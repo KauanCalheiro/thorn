@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\LogsAll;
 use App\Traits\QueryBuilderSearchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes, QueryBuilderSearchable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes, QueryBuilderSearchable, LogsAll;
 
     protected $table = 'users';
 
@@ -83,8 +85,7 @@ class User extends Authenticatable {
         return $array;
     }
 
-    public function toSearchableArray(): array
-    {
+    public function toSearchableArray(): array {
         return [
             'id' => $this->id,
             'name' => $this->name,
