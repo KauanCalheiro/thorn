@@ -199,5 +199,9 @@
     "Adductors": "Adutores",
     "Abductors": "Abdutores",
     "Glutes": "Glúteos",
-    "Calves": "Panturrilhas"
+    "Calves": "Panturrilhas",
+    "Exercise deleted successfully": "Exercício deletado com sucesso",
+    "The exercise name is required": "O nome do exercício é obrigatório",
+    "The exercise GIF is required": "O GIF do exercício é obrigatório",
+    "Error while storing the GIF: ": "Erro ao armazenar o GIF: "
 }

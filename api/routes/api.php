@@ -1,6 +1,8 @@
 <?php
 
+use App\Enums\PermissionEnum;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\MuscleGroupController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RequestLogController;
@@ -41,4 +43,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('user/{user}/revoke/permission', [UserController::class, 'revokePermission']);
 
     Route::apiResource('muscle-group', MuscleGroupController::class);
+    Route::apiResource('exercise', ExerciseController::class);
 });
