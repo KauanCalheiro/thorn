@@ -12,7 +12,9 @@ use Exception;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 class RoleController extends Controller {
-    protected $policy = RolePolicy::class;
+    public function __construct() {
+        $this->authorizeResource(Role::class, 'role');
+    }
 
     public function index() {
         try {

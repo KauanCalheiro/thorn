@@ -15,7 +15,9 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller {
-    protected $policy = UserPolicy::class;
+    public function __construct() {
+        $this->authorizeResource(User::class, 'user');
+    }
 
     public function index() {
         try {

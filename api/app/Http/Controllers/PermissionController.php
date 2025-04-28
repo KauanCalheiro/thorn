@@ -14,6 +14,10 @@ use Spatie\QueryBuilder\QueryBuilder;
 class PermissionController extends Controller {
     protected $policy = PermissionPolicy::class;
 
+    public function __construct() {
+        $this->authorizeResource(Permission::class, 'permission');
+    }
+
     public function index() {
         try {
             $permissions = QueryBuilder::for(Permission::class)

@@ -11,7 +11,9 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class RequestLogController extends Controller {
-    protected $policy = RequestLogPolicy::class;
+    public function __construct() {
+        $this->authorizeResource(RequestLog::class);
+    }
 
     public function index(Request $request) {
         try {

@@ -2,52 +2,30 @@
 
 namespace App\Http\Controllers;
 use App\Services\ResponseService;
-use Carbon\Carbon;
 use Exception;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class AuthController {
-    const TOKEN_NAME = 'Personal Access Token';
-    const REGISTER_ERROR_BAG = 'register';
-    const REGISTER_VALIDATION = [
+    private const TOKEN_NAME = 'Personal Access Token';
+    private const REGISTER_ERROR_BAG = 'register';
+    private const REGISTER_VALIDATION = [
         'name' => ['required', 'string'],
         'email' => ['required', 'string', 'unique:users'],
         'password' => ['required', 'string'],
         'c_password' => ['required', 'same:password'],
     ];
 
-    const LOGIN_ERROR_BAG = 'login';
-    const LOGIN_VALIDATION = [
+    private const LOGIN_ERROR_BAG = 'login';
+    private const LOGIN_VALIDATION = [
         'email' => ['required', 'string', 'email'],
         'password' => ['required', 'string'],
         'remember_me' => ['boolean'],
     ];
 
-    const TOKEN_TYPE = 'Bearer';
+    private const TOKEN_TYPE = 'Bearer';
 
-    /**
-     * Create user
-     *
-     * @api POST /api/auth/register
-     *
-     * @body {
-     *  "name":       "string",
-     *  "email":      "string",
-     *  "password":   "string",
-     *  "c_password": "string"
-     * }
-     *
-     * @param  Request $request
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
-     *
-     * @author Kauan Morinel Calheiro <kauan.calheiro@universo.univates.br>
-     *
-     * @date 2024-12-18
-     */
     public function register(Request $request) {
         try {
             $request->validateWithBag(

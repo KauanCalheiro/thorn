@@ -12,7 +12,9 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class MuscleGroupController extends Controller {
-    protected $policy = MuscleGroupPolicy::class;
+    public function __construct() {
+        $this->authorizeResource(MuscleGroup::class, 'muscle_group');
+    }
 
     public function index() {
         try {
