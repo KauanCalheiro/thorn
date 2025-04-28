@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\RequestLog;
+use App\Policies\RequestLogPolicy;
 use App\Services\ResponseService;
 use Exception;
 use Illuminate\Http\Request;
@@ -10,13 +11,8 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class RequestLogController extends Controller {
-    public function __construct() {
-        $this->authorizeResource(RequestLog::class);
-    }
+    protected $policy = RequestLogPolicy::class;
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request) {
         try {
             $logs = QueryBuilder::for(RequestLog::class)

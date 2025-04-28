@@ -2,17 +2,13 @@
 
 namespace App\Policies;
 
+use App\Enums\PermissionEnum;
 use App\Models\RequestLog;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class RequestLogPolicy
-{
-    /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user): bool
-    {
-        return $user->hasRole('admin');
+class RequestLogPolicy {
+    public function viewAny(User $user): bool {
+        return $user->can(PermissionEnum::VIEW_REQUEST_LOGS);
     }
 }

@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMuscleGroupRequest;
 use App\Http\Requests\UpdateMuscleGroupRequest;
 use App\Models\MuscleGroup;
+use App\Policies\MuscleGroupPolicy;
 use App\Services\ResponseService;
 use Exception;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class MuscleGroupController extends Controller {
-    public function __construct() {
-        $this->authorizeResource(MuscleGroup::class, 'muscleGroup');
-    }
+    protected $policy = MuscleGroupPolicy::class;
 
     public function index() {
         try {

@@ -2,43 +2,45 @@
 
 namespace App\Policies;
 
+use App\Enums\PermissionEnum;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 class UserPolicy {
-    /**
-     * Determine whether the user can view any models.
-     */
     public function viewAny(User $user): bool {
-        return true;
+        return $user->can(PermissionEnum::READ_USER);
     }
 
-    /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $user, User $model): bool {
-        return true;
+    public function view(User $user): bool {
+        return $user->can(PermissionEnum::READ_USER);
     }
 
-    /**
-     * Determine whether the user can create models.
-     */
     public function create(User $user): bool {
-        return true;
+        return $user->can(PermissionEnum::CREATE_USER);
     }
 
-    /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, User $model): bool {
-        return true;
+    public function update(User $user): bool {
+        return $user->can(PermissionEnum::UPDATE_USER);
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     */
-    public function delete(User $user, User $model): bool {
-        return true;
+    public function delete(User $user): bool {
+        return $user->can(PermissionEnum::DELETE_USER);
+    }
+
+    public function assignRole(User $user): bool {
+        return $user->can(PermissionEnum::ASSIGN_ROLE);
+    }
+
+    public function revokeRole(User $user): bool {
+        return $user->can(PermissionEnum::REVOKE_ROLE);
+    }
+
+    public function assignPermission(User $user): bool {
+        return $user->can(PermissionEnum::ASSIGN_PERMISSION);
+    }
+
+    public function revokePermission(User $user): bool {
+        return $user->can(PermissionEnum::REVOKE_PERMISSION);
     }
 }

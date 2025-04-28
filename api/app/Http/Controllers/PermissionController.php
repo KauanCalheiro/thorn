@@ -12,13 +12,8 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class PermissionController extends Controller {
-    public function __construct() {
-        $this->authorizeResource(Permission::class);
-    }
+    protected $policy = PermissionPolicy::class;
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index() {
         try {
             $permissions = QueryBuilder::for(Permission::class)
@@ -42,9 +37,6 @@ class PermissionController extends Controller {
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Permission $permission) {
         try {
             return ResponseService::success($permission);
@@ -53,9 +45,6 @@ class PermissionController extends Controller {
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StorePermissionRequest $request) {
         try {
             return ResponseService::success(Permission::create($request->validated()));
@@ -64,9 +53,6 @@ class PermissionController extends Controller {
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdatePermissionRequest $request, Permission $permission) {
         try {
             if (!$permission->update($request->validated())) {
@@ -78,9 +64,6 @@ class PermissionController extends Controller {
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Permission $permission) {
         try {
             if (!$permission->deleteQuietly()) {

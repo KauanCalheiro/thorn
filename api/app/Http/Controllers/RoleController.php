@@ -12,13 +12,8 @@ use Exception;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 class RoleController extends Controller {
-    public function __construct() {
-        $this->authorizeResource(Role::class);
-    }
+    protected $policy = RolePolicy::class;
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index() {
         try {
             $roles = QueryBuilder::for(Role::class)
@@ -41,9 +36,6 @@ class RoleController extends Controller {
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Role $role) {
         try {
             return ResponseService::success($role);
@@ -52,9 +44,6 @@ class RoleController extends Controller {
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreRoleRequest $request) {
         try {
             return ResponseService::success(Role::create($request->validated()));
@@ -63,9 +52,6 @@ class RoleController extends Controller {
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateRoleRequest $request, Role $role) {
         try {
             if (!$role->update($request->validated())) {
@@ -77,9 +63,6 @@ class RoleController extends Controller {
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Role $role) {
         try {
             if (!$role->deleteQuietly()) {

@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserPermissionRequest;
 use App\Http\Requests\UserRoleRequest;
 use App\Models\User;
+use App\Policies\UserPolicy;
 use App\Services\ResponseService;
 use Exception;
 use Illuminate\Http\Request;
@@ -14,13 +15,9 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller {
-    public function __construct() {
-        $this->authorizeResource(User::class);
-    }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request) {
+    protected $policy = UserPolicy::class;
+
+    public function index() {
         try {
             $users = QueryBuilder::for(User::class)
                 ->allowedFilters([
@@ -46,9 +43,6 @@ class UserController extends Controller {
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreUserRequest $request) {
         try {
             $user = User::create($request->validated());
@@ -58,9 +52,6 @@ class UserController extends Controller {
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(User $user) {
         try {
             $user->load(request('with', []));
@@ -70,9 +61,6 @@ class UserController extends Controller {
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateUserRequest $request, User $user) {
         try {
             $user->updateOrFail($request->validated());
@@ -82,9 +70,6 @@ class UserController extends Controller {
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(User $user) {
         try {
             if ($user->id === auth()->user()->id) {
