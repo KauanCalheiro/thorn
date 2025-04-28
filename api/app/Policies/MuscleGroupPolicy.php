@@ -9,11 +9,11 @@ use Illuminate\Auth\Access\Response;
 
 class MuscleGroupPolicy {
     public function viewAny(User $user): bool {
-        return $user->hasPermissionTo(PermissionEnum::VIEW_MUSCLE_GROUPS);
+        return $user->hasPermissionTo(PermissionEnum::READ_MUSCLE_GROUPS);
     }
 
     public function view(User $user, MuscleGroup $muscleGroup): bool {
-        return $user->hasPermissionTo(PermissionEnum::VIEW_MUSCLE_GROUPS);
+        return $user->hasPermissionTo(PermissionEnum::READ_MUSCLE_GROUPS);
     }
 
     public function create(User $user): bool {
