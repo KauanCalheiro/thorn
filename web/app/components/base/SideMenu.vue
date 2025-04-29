@@ -3,6 +3,10 @@ const isOpen = ref(false);
 
 import { useMediaQuery } from "@vueuse/core";
 const isDesktop = useMediaQuery("(min-width: 768px)");
+
+function onSelected() {
+  isOpen.value = false;
+}
 </script>
 
 <template>
@@ -22,7 +26,7 @@ const isDesktop = useMediaQuery("(min-width: 768px)");
     </template>
     <template #body>
       <div class="flex flex-col gap-4 h-full min-h-[50vh] min-w-[20vw]">
-        <ULink href="/user">Usuarios</ULink>
+         <MenuAccordion @selected="onSelected"/>
       </div>
     </template>
     <template #footer>
