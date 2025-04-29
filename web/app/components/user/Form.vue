@@ -3,6 +3,7 @@ import type User from "~~/types/User";
 import { mixed, number, object, string, type InferType } from "yup";
 import type { FormSubmitEvent } from "@nuxt/ui";
 import type ApiResponse from "~~/types/ApiResponse";
+import { USER_ENPOINT } from "~~/constants/api";
 
 const { user } = defineProps<{
   user: User | undefined;
@@ -48,7 +49,7 @@ async function onSubmit(event: FormSubmitEvent<UserSchema>) {
   loading.value = true;
   try {
     let { error } = await useSanctumFetch<ApiResponse<User>>(
-      isEditing ? `/user/${state.id}` : "/user",
+      isEditing ? `${USER_ENPOINT}/${state.id}` : USER_ENPOINT,
       {
         method: isEditing ? "PUT" : "POST",
         body: {

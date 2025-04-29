@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type User from "~~/types/User";
 import type { $Fetch } from "ofetch";
+import { USER_ENPOINT } from "~~/constants/api";
 
 const { user } = defineProps<{ user: User }>();
 const emit = defineEmits(["after-delete"]);
@@ -8,7 +9,7 @@ const isOpen = defineModel<boolean>();
 
 function onDelete() {
   const fetch: $Fetch = useSanctumClient();
-  fetch(`/user/${user.id}`, { method: "DELETE" })
+  fetch(`${USER_ENPOINT}/${user.id}`, { method: "DELETE" })
     .then(() => {
       isOpen.value = false;
       emit("after-delete");

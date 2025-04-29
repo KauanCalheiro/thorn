@@ -4,6 +4,7 @@ import type User from "~~/types/User";
 import type ApiResponse from "~~/types/ApiResponse";
 import type { TableColumn } from "@nuxt/ui";
 import type { AsyncDataRequestStatus, NuxtError } from "#app";
+import { USER_ENPOINT } from "~~/constants/api";
 
 const route = useRoute();
 
@@ -43,7 +44,7 @@ function onDelete(row: User) {
 }
 
 function fetch(page: string, sort: string, search: string) {
-  return useSanctumFetch<ApiResponse<User[]>>("/user", {
+  return useSanctumFetch<ApiResponse<User[]>>(USER_ENPOINT, {
     method: "GET",
     query: {
       "page[number]": page,
