@@ -11,7 +11,7 @@ class UpdateMuscleGroupRequest extends FormRequest {
 
     public function rules(): array {
         return [
-            'name' => ['sometimes', 'required', 'string', 'max:255', 'unique:muscle_groups,name,' . $this->route('muscleGroup')->id],
+            'name' => ['sometimes', 'required', 'string', 'max:255', 'unique:muscle_groups,name,' . $this->route('muscle_group')->id],
         ];
     }
 }
