@@ -19,11 +19,6 @@ class SetupInitialAccessControl extends Command {
     ];
 
     public function handle() {
-        if (!$this->confirm('Are you sure you want to synchronize roles and permissions?', false)) {
-            $this->warn('Operation cancelled.');
-            return;
-        }
-
         $this->info('Starting roles and permissions synchronization...');
 
         $adminUser = $this->createOrUpdateAdminUser();
