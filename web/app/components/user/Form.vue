@@ -63,8 +63,6 @@ async function onSubmit(event: FormSubmitEvent<UserSchema>) {
         }
       }
     );
-      console.log("isEditing", isEditing);
-    console.log("error", error);
 
     if (error.value) {
       throw new Error();
