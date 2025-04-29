@@ -35,12 +35,10 @@ const columns: TableColumn<User>[] = [
 ];
 
 function onEdit(row: User) {
-  console.log("onEdit", row);
   emit("edit", row);
 }
 
 function onDelete(row: User) {
-  console.log("onDelete", row);
   emit("delete", row);
 }
 

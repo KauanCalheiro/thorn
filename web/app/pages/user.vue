@@ -10,13 +10,11 @@ const refUserTable = ref();
 const userToPerformAction = ref<User | undefined>(undefined);
 
 function onAdd() {
-  console.log("onAdd");
   userToPerformAction.value = undefined;
   openForm();
 }
 
 function onEdit(row: User) {
-  console.log("onEdit", row);
   userToPerformAction.value = row;
   openForm();
 }
