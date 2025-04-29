@@ -25,7 +25,10 @@ const schema = object({
     .required("O email é obrigatório")
     .email("Deve ser um email válido"),
   password: string()
-    .required("A senha é obrigatória")
+    .when([], {
+      is: () => !isEditing,
+      then: (schema) => schema.required("A senha é obrigatória"),
+    })
     .min(6, "A senha deve ter pelo menos 6 caracteres"),
 });
 
@@ -60,6 +63,8 @@ async function onSubmit(event: FormSubmitEvent<UserSchema>) {
         }
       }
     );
+      console.log("isEditing", isEditing);
+    console.log("error", error);
 
     if (error.value) {
       throw new Error();
