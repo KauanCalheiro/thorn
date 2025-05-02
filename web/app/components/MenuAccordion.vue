@@ -14,14 +14,14 @@ const items: AccordionItem[] = [
     icon: "icon-park-outline:system",
     links: [
       { label: "Usuários", to: "/user", icon: "i-lucide-users" },
-      { label: "Exercícios", to: "/exercises", icon: "hugeicons:equipment-gym-03" },
+      { label: "Exercícios", to: "/exercise", icon: "hugeicons:equipment-gym-03" },
     ],
   },
-  {
-    label: "Pessoal",
-    icon: "i-lucide-user",
-    links: [{ label: "Perfil", to: "/usuarios" }],
-  },
+  // {
+  //   label: "Pessoal",
+  //   icon: "i-lucide-user",
+  //   links: [{ label: "Perfil", to: "/profile" }],
+  // },
 ];
 
 const emits = defineEmits<{
