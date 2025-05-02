@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/test-utils',
     'nuxt-auth-sanctum',
+    '@formkit/auto-animate/nuxt',
   ],
 
   plugins: [
@@ -35,8 +36,8 @@ export default defineNuxtConfig({
     head: {
       title: 'Thorn',
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/thorn/favicon.ico', },
-        { rel: 'apple-touch-icon', href: '/thorn/apple-touch-icon.png', },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico', },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', },
       ],
     },
     baseURL: '/',
