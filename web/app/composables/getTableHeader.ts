@@ -3,8 +3,9 @@ import type { Column } from '@tanstack/vue-table'
 
 export function getTableHeader<T>(label: string, column: Column<T>) {
   const route = useRoute();
-  const isSortedAsc = route.query.sort?.toString().includes('-') ? false : true;
-  const isRouteColumn = route.query.sort?.toString().includes(column.id);
+  const routeSort = route.query.sort?.toString();
+  const isSortedAsc = routeSort?.includes('-') ? false : true;
+  const isRouteColumn = routeSort === column.id || routeSort === `-${column.id}`;
 
   const icon = isRouteColumn
     ? isSortedAsc
