@@ -8,26 +8,51 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate();
 const {
   acceptText = "Sim",
   declineText = "Não",
-  acceptLoading = false,
+  acceptFn = () => Promise.resolve(),
+  declineFn = () => Promise.resolve(),
 } = defineProps<{
   acceptText?: string;
   declineText?: string;
-  acceptLoading?: boolean;
+  acceptFn?: () => Promise<any>;
+  declineFn?: () => Promise<any>;
 }>();
 
 const emit = defineEmits<{
   accept: [];
   decline: [];
 }>();
+
+const acceptLoading = ref<boolean>(false);
+
+async function handleAccept() {
+  acceptLoading.value = true;
+  emit("accept");
+  acceptFn().finally(() => {
+    acceptLoading.value = false;
+  });
+}
+
+const declineLoading = ref<boolean>(false);
+
+async function handledecline() {
+  declineLoading.value = true;
+  emit("decline");
+  declineFn().finally(() => {
+    declineLoading.value = false;
+  });
+}
 </script>
 
 <template>
   <DefineTemplate>
-    <div class="flex flex-col gap-8 items-center p-12">
+    <div class="flex flex-col gap-8 items-center py-12 px-8">
       <slot />
       <div class="flex flex-row gap-4 justify-between md:justify-end w-full">
         <UButton
-          @click="emit('decline')"
+          @click="handledecline"
+          trailing
+          :loading-icon="useLoadingIcon()"
+          :loading="declineLoading"
           color="neutral"
           variant="soft"
           size="xl"
@@ -36,9 +61,9 @@ const emit = defineEmits<{
           <slot name="decline">{{ declineText }}</slot>
         </UButton>
         <UButton
-          @click="emit('accept')"
+          @click="handleAccept"
           trailing
-          loading-icon="svg-spinners:90-ring-with-bg"
+          :loading-icon="useLoadingIcon()"
           :loading="acceptLoading"
           color="primary"
           variant="soft"
@@ -56,7 +81,7 @@ const emit = defineEmits<{
       <ReuseTemplate />
     </template>
   </UModal>
-  <UDrawer v-else v-model:open="isOpen" :dismissible="false">
+  <UDrawer v-else v-model:open="isOpen" :dismissible="true">
     <template #body>
       <ReuseTemplate />
     </template>

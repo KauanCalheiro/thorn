@@ -47,7 +47,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     });
   } catch (error) {
     toast().error({
-      description: (error as { message?: string })?.message || "Ocorreu um erro",
+      description:
+        (error as { message?: string })?.message || "Ocorreu um erro",
     });
   } finally {
     waitingLogin.value = false;
@@ -70,17 +71,26 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
         <div class="flex flex-col gap-4">
           <UFormField label="Email" name="email" :required="true">
-            <UInput v-model="state.email" class="w-full"/>
+            <UInput
+              type="email"
+              v-model="state.email"
+              class="w-full"
+              variant="soft"
+            />
           </UFormField>
 
           <UFormField label="Senha" name="password" :required="true">
-            <UInput v-model="state.password" type="password" class="w-full"/>
+            <PasswordInput
+              v-model="state.password"
+              class="w-full"
+              variant="soft"
+            />
           </UFormField>
         </div>
 
         <template #footer>
           <div class="flex justify-between">
-            <div/>
+            <div />
             <UButton
               size="md"
               color="primary"

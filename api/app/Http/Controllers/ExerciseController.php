@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Spatie\QueryBuilder\Sorts\RelationColumnSort;
 use App\Http\Requests\StoreExerciseRequest;
 use App\Http\Requests\UpdateExerciseRequest;
 use App\Models\Exercise;
@@ -10,6 +11,7 @@ use App\Services\ExerciseService;
 use App\Services\ResponseService;
 use Exception;
 use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\AllowedSort;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class ExerciseController extends Controller {
@@ -37,7 +39,7 @@ class ExerciseController extends Controller {
                 ->allowedSorts([
                     'id',
                     'name',
-                    'muscle_group_id'
+                    AllowedSort::custom('muscle_group_name', new RelationColumnSort(), 'muscleGroup.name')
                 ])
                 ->jsonPaginate();
             return ResponseService::success(data: $exercises, count: $exercises->toArray()['total']);

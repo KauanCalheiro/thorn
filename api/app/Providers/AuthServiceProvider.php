@@ -7,6 +7,7 @@ use App\Models\Permission;
 use App\Models\RequestLog;
 use App\Models\Role;
 use App\Models\User;
+use App\Policies\ExercisePolicy;
 use App\Policies\MuscleGroupPolicy;
 use App\Policies\PermissionPolicy;
 use App\Policies\RequestLogPolicy;
@@ -21,7 +22,7 @@ class AuthServiceProvider extends ServiceProvider {
         User::class => UserPolicy::class,
         RequestLog::class => RequestLogPolicy::class,
         MuscleGroup::class => MuscleGroupPolicy::class,
-        Exercise::class => MuscleGroupPolicy::class,
+        Exercise::class => ExercisePolicy::class,
     ];
 
     public function boot() {

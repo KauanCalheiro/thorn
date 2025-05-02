@@ -1,20 +1,12 @@
 <?php
 
-use App\Enums\PermissionEnum;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\MuscleGroupController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RequestLogController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
-use App\Mail\MyTestEmail;
-use App\Models\MuscleGroup;
-use App\Models\Permission;
-use App\Models\Task;
-use App\Models\User;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth'], function () {
@@ -45,3 +37,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('muscle-group', MuscleGroupController::class);
     Route::apiResource('exercise', ExerciseController::class);
 });
+
+Route::get('storage/{path}', fn($path) => response()->file(storage_path("app/public/{$path}")))->where('path', '.*')->name('files.show');
