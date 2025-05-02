@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Exercise;
 use Exception;
 use Illuminate\Http\UploadedFile;
+use Storage;
 use Str;
 
 class ExerciseService {
@@ -24,15 +25,19 @@ class ExerciseService {
         return $this;
     }
 
+    protected function deleteGif(): void {
+        if ($this->exercise->gif) {
+            $path = $this->exercise->getOriginal('gif');
+            Storage::disk('public')->delete($path);
+        }
+    }
+
     protected function storeGif(UploadedFile $gif, string $exerciseName): string {
         try {
-            $gifName = sprintf(
-                '%s_%s.gif',
-                Str::snake($exerciseName),
-                Str::uuid()
-            );
+            $hash = Str::random(3);
+            $gifName = Str::slug("{$exerciseName}_{$hash}");
 
-            return $gif->storeAs(Exercise::GIF_PATH, $gifName, 'public');
+            return $gif->storeAs(Exercise::GIF_PATH, "$gifName.gif", 'public');
         } catch (Exception $e) {
             throw new Exception(__('Error while storing the GIF: ') . $e->getMessage());
         }
@@ -73,6 +78,7 @@ class ExerciseService {
 
     protected function beforeUpdate(array $data): self {
         if (isset($data['gif']) && $data['gif'] instanceof UploadedFile) {
+            $this->deleteGif();
             $data['gif'] = $this->storeGif($data['gif'], $data['name']);
         } else {
             unset($data['gif']);
