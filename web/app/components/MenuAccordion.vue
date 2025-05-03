@@ -17,11 +17,6 @@ const items: AccordionItem[] = [
       { label: "Exercícios", to: "/exercise", icon: "hugeicons:equipment-gym-03" },
     ],
   },
-  // {
-  //   label: "Pessoal",
-  //   icon: "i-lucide-user",
-  //   links: [{ label: "Perfil", to: "/profile" }],
-  // },
 ];
 
 const emits = defineEmits<{
@@ -33,7 +28,7 @@ const emits = defineEmits<{
   <UAccordion
     :items="items"
     :ui="{
-      item: 'bg-neutral-800 m-2 px-4 rounded-lg',
+      item: 'bg-neutral-800 px-4 rounded-lg',
     }"
   >
     <template #body="{ item }">
