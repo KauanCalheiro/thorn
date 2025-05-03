@@ -25,9 +25,16 @@ class AuthController {
 
     public function user(Request $request) {
         try {
-            return ResponseService::success(
-                data: $this->generateUserTokenResponse($request->user())
-            );
+            $user = $request->user();
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'google_account' => !empty($user->google_id),
+                'picture' => $user->picture ?? $user->google_picture,
+                'roles' => $user->rolesList,
+                'permissions' => $user->permissionsList,
+            ];
         } catch (Exception $e) {
             return ResponseService::error($e);
         }
@@ -42,13 +49,4 @@ class AuthController {
         }
     }
 
-    private function generateUserTokenResponse(User $user) {
-        return [
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-            'roles' => $user->rolesList,
-            'permissions' => $user->permissionsList,
-        ];
-    }
 }
