@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     'nuxt-auth-sanctum',
     '@formkit/auto-animate/nuxt',
+    'nuxt-vue3-google-signin',
   ],
 
   plugins: [
@@ -41,6 +42,10 @@ export default defineNuxtConfig({
       ],
     },
     baseURL: '/',
+  },
+
+  googleSignIn: {
+    clientId: process.env.GOOGLE_SING_IN_CLIENT_ID
   },
 
   sanctum: {
