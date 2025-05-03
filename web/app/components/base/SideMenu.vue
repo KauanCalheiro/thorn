@@ -18,20 +18,17 @@ function onSelected() {
       variant="ghost"
       @click="isOpen = true"
     />
-    <template #header>
-      <div class="w-full flex flex-row justify-between">
-        <div />
-        <BaseButtonLogout />
-      </div>
-    </template>
     <template #body>
       <div class="flex flex-col gap-4 h-full min-h-[50vh] min-w-[20vw]">
-         <MenuAccordion @selected="onSelected"/>
+        <MenuUser @selected="onSelected"/>
+        <MenuAccordion @selected="onSelected" />
       </div>
     </template>
     <template #footer>
-      <div class="w-full h-fit p-2 flex flex-row justify-center">
-        <BaseThornLogo />
+      <div class="flex flex-col gap-4">
+        <div class="w-full h-fit p-2 flex flex-row justify-center">
+          <BaseThornLogo />
+        </div>
       </div>
     </template>
   </UDrawer>
