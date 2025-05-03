@@ -1,78 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\LoginRequest;
+use App\Services\AuthService;
 use App\Services\ResponseService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController {
     private const TOKEN_NAME = 'Personal Access Token';
-    private const REGISTER_ERROR_BAG = 'register';
-    private const REGISTER_VALIDATION = [
-        'name' => ['required', 'string'],
-        'email' => ['required', 'string', 'unique:users'],
-        'password' => ['required', 'string'],
-        'c_password' => ['required', 'same:password'],
-    ];
 
-    private const LOGIN_ERROR_BAG = 'login';
-    private const LOGIN_VALIDATION = [
-        'email' => ['required', 'string', 'email'],
-        'password' => ['required', 'string'],
-        'remember_me' => ['boolean'],
-    ];
-
-    private const TOKEN_TYPE = 'Bearer';
-
-    public function register(Request $request) {
+    public function login(LoginRequest $request) {
         try {
-            $request->validateWithBag(
-                self::REGISTER_ERROR_BAG,
-                self::REGISTER_VALIDATION
-            );
+            $credentials = $request->validated();
 
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-            ]);
-
-            $expires = now()->addDay();
-
-            return ResponseService::success(
-                data: $this->generateUserTokenResponse($user, $expires),
-                message: 'Successfully created user!',
-                code: 201
-            );
-        } catch (Exception $e) {
-            return ResponseService::error($e);
-        }
-    }
-
-    public function login(Request $request) {
-        try {
-
-            $request->validateWithBag(
-                self::LOGIN_ERROR_BAG,
-                self::LOGIN_VALIDATION
-            );
-
-            $credentials = $request->only('email', 'password');
-
-            if (!Auth::attempt($credentials)) {
-                throw new Exception('Unauthorized', 401);
-            }
-
-            $user = Auth::user();
-            $user->tokens()->delete();
-
-            $expires = $request->remember_me ? now()->addMonth() : now()->addDay();
-
-            return [
-                'token' => $user->createToken(self::TOKEN_NAME, ['*'], $expires)->plainTextToken,
-            ];
+            return AuthService::make($credentials)->handleLogin();
         } catch (Exception $e) {
             return ResponseService::error($e);
         }
