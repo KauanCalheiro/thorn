@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from "#ui/types";
 import * as yup from "yup";
+import GoogleSigninButton from "~/components/GoogleSigninButton.vue";
 import type ApiResponse from "~~/types/ApiResponse";
 
 definePageMeta({
   layout: "login",
 });
-
-useColorMode().preference = "dark";
 
 const waitingLogin = ref(false);
 
@@ -57,53 +56,51 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 </script>
 
 <template>
-  <div class="h-[100dvh] flex justify-center items-center">
+  <div
+    class="h-[100dvh] flex justify-center items-center mx-auto w-10/12 md:w-4/12"
+  >
     <UForm
       :schema="schema"
       :state="state"
-      class="space-y-4 w-screen"
+      class="space-y-4 w-screen py-10 px-10 bg-neutral rounded-2xl flex flex-col gap-2"
+      style="box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.1);"
       @submit="onSubmit"
     >
-      <UCard class="mx-auto w-10/12 md:w-4/12">
-        <template #header>
-          <h1 class="text-2xl font-bold">Login</h1>
-        </template>
+      <div class="flex flex-col gap-6">
+        <UFormField label="Email" name="email" :required="true">
+          <UInput
+            type="email"
+            v-model="state.email"
+            class="w-full"
+            variant="soft"
+          />
+        </UFormField>
 
-        <div class="flex flex-col gap-4">
-          <UFormField label="Email" name="email" :required="true">
-            <UInput
-              type="email"
-              v-model="state.email"
-              class="w-full"
-              variant="soft"
-            />
-          </UFormField>
+        <UFormField label="Senha" name="password" :required="true">
+          <PasswordInput
+            v-model="state.password"
+            class="w-full"
+            variant="soft"
+          />
+        </UFormField>
+      </div>
 
-          <UFormField label="Senha" name="password" :required="true">
-            <PasswordInput
-              v-model="state.password"
-              class="w-full"
-              variant="soft"
-            />
-          </UFormField>
-        </div>
+      <div class="flex flex-col justify-between gap-3">
+        <UButton
+          size="md"
+          color="primary"
+          variant="soft"
+          type="submit"
+          class="justify-center"
+          trailing
+          loading-icon="svg-spinners:90-ring-with-bg"
+          :loading="waitingLogin"
+        >
+          Entrar
+        </UButton>
 
-        <template #footer>
-          <div class="flex justify-between">
-            <div />
-            <UButton
-              size="md"
-              color="primary"
-              type="submit"
-              trailing
-              loading-icon="svg-spinners:90-ring-with-bg"
-              :loading="waitingLogin"
-            >
-              Entrar
-            </UButton>
-          </div>
-        </template>
-      </UCard>
+        <GoogleSigninButton />
+      </div>
     </UForm>
   </div>
 </template>
