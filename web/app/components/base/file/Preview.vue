@@ -41,7 +41,7 @@ watch(open, (value) => {
           v-if="!isPdf"
           :src="url"
           alt="Preview"
-          class="object-contain max-h-[60dvh] border-1 border-primary rounded-2xl"
+          class="object-contain max-h-[60dvh] border-1 border-primary rounded-lg"
         />
       </div>
     </template>

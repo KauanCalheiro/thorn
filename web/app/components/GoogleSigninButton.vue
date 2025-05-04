@@ -48,9 +48,7 @@ async function handleOnError(errorResponse: AuthCodeFlowErrorResponse) {
 
 <template>
   <UButton
-    size="md"
     class="justify-center"
-    variant="soft"
     color="neutral"
     type="button"
     icon="logos:google-icon"

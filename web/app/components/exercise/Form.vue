@@ -136,7 +136,6 @@ async function onSubmit(event: FormSubmitEvent<ExerciseSchema>) {
       <UFormField label="Nome" name="name" required>
         <UInput
           v-model="state.name"
-          variant="soft"
           placeholder="Digite o nome do exercício"
           class="w-full"
         />
@@ -144,10 +143,12 @@ async function onSubmit(event: FormSubmitEvent<ExerciseSchema>) {
 
       <UFormField label="Grupo Muscular" name="muscle_group_id" required>
         <USelectMenu
+          :ui="{
+            item: 'data-highlighted:bg-inverted/20 px-3',
+          }"
           :loading="loadingMuscleGroups"
           :disabled="loadingMuscleGroups"
           :trailing="true"
-          variant="soft"
           value-key="value"
           v-model="state.muscle_group_id"
           :placeholder="
@@ -174,7 +175,6 @@ async function onSubmit(event: FormSubmitEvent<ExerciseSchema>) {
     <div class="flex flex-row gap-4 justify-between mt-6">
       <div />
       <UButton
-        variant="soft"
         size="xl"
         type="submit"
         trailing

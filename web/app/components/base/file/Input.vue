@@ -78,7 +78,7 @@ watch(
 <template>
   <label
     :for="inputId"
-    class="rounded-lg flex relative bg-elevated/50 hover:bg-elevated disabled:bg-elevated/30"
+    class="rounded-lg flex relative bg-elevated"
     :class="
       isUploaded
         ? 'border-none cursor-not-allowed'
@@ -101,10 +101,10 @@ watch(
       v-if="!isUploaded"
       class="flex flex-col items-center text-center pointer-events-none gap-2"
     >
-      <Icon name="solar:cloud-upload-bold" class="h-12 w-12 bg-neutral-700" />
-      <div class="text-xs text-neutral-500">
+      <Icon name="solar:cloud-upload-bold" class="h-12 w-12 " />
+      <div class="text-xs text-elevated">
         Escolha ou arraste um arquivo <br />
-        <span v-if="hasAcceptedTypes">( {{ acceptString }} )</span>
+        <span class="text-muted" v-if="hasAcceptedTypes">( {{ acceptString }} )</span>
       </div>
     </div>
 

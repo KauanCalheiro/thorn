@@ -62,8 +62,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     <UForm
       :schema="schema"
       :state="state"
-      class="space-y-4 w-screen py-10 px-10 bg-neutral rounded-2xl flex flex-col gap-2"
-      style="box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.1);"
+      class="space-y-4 w-screen py-10 px-10 bg-default rounded-xl flex flex-col gap-2 border-1 border-accented/60"
       @submit="onSubmit"
     >
       <div class="flex flex-col gap-6">
@@ -72,7 +71,6 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             type="email"
             v-model="state.email"
             class="w-full"
-            variant="soft"
           />
         </UFormField>
 
@@ -80,16 +78,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           <PasswordInput
             v-model="state.password"
             class="w-full"
-            variant="soft"
           />
         </UFormField>
       </div>
 
       <div class="flex flex-col justify-between gap-3">
         <UButton
-          size="md"
-          color="primary"
-          variant="soft"
           type="submit"
           class="justify-center"
           trailing

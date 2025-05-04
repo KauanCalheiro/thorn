@@ -15,16 +15,13 @@ const emits = defineEmits<{
 <template>
   <UAccordion
     :items="[1]"
-    :ui="{
-      item: 'bg-accented/20 px-4 rounded-lg',
-    }"
   >
     <template #default>
       <div
         class="flex items-center gap-3 px-1 rounded-xl w-full overflow-hidden"
       >
         <div
-          class="w-12 h-12 rounded-full flex items-center justify-center text-neutral text-lg font-medium overflow-hidden"
+          class="w-12 h-12 rounded-full flex items-center justify-center text-neutral text-lg font-medium overflow-hidden bg-accented"
         >
           <img
             v-if="user?.picture"
@@ -52,7 +49,6 @@ const emits = defineEmits<{
         <li>
           <NuxtLink to="/settings">
             <UButton
-              variant="soft"
               :color="activeRouteIsSettings() ? 'primary' : 'neutral'"
               class="w-full"
               :class="{

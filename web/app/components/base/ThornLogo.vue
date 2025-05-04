@@ -1,6 +1,6 @@
 <template>
     <img
-        :class="[width, 'filter drop-shadow-[3px_2px_1px_#000]']"
+        :class="[width, 'filter drop-shadow-[1px_0px_0px_#000] dark:drop-shadow-[3px_2px_1px_#000]']"
         src="public/logo.png"
         alt="Logo"
     >

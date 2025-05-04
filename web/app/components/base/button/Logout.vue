@@ -31,7 +31,6 @@ async function onLogout() {
     icon="solar:logout-3-bold"
     size="lg"
     color="neutral"
-    variant="soft"
     :trailing="trailing"
     :loading="loading"
     :loading-icon="useLoadingIcon()"

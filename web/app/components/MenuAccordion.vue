@@ -27,9 +27,6 @@ const emits = defineEmits<{
 <template>
   <UAccordion
     :items="items"
-    :ui="{
-      item: 'bg-accented/20 px-4 rounded-lg',
-    }"
   >
     <template #body="{ item }">
       <ul class="flex flex-col gap-2">

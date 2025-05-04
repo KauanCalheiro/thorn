@@ -5,6 +5,7 @@ import inputTheme from '~~/src/theme/input';
 import buttonTheme from '~~/src/theme/button';
 import accordionTheme from '~~/src/theme/accordion';
 import tableTheme from '~~/src/theme/table';
+import selectMenu from '~~/src/theme/selectMenu';
 
 export default defineAppConfig({
   // https://ui.nuxt.com/getting-started/theme#design-system
@@ -17,6 +18,7 @@ export default defineAppConfig({
     button: buttonTheme,
     accordion: accordionTheme,
     table: tableTheme,
+    selectMenu: selectMenu
   },
 
   sanctum: {

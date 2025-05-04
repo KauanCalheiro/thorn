@@ -19,4 +19,18 @@
 
 :root {
   --ui-radius: 0.5rem;
+
+  --ui-bg: var(--color-white);
+  --ui-bg-muted: var(--ui-color-neutral-100);
+  --ui-bg-elevated: var(--ui-color-neutral-200);
+  --ui-bg-accented: var(--ui-color-neutral-200);
+  --ui-bg-inverted: var(--ui-color-neutral-400);
+}
+
+.dark {
+  --ui-bg: var(--ui-color-neutral-900);
+  --ui-bg-muted: var(--ui-color-neutral-900);
+  --ui-bg-elevated: var(--ui-color-neutral-800);
+  --ui-bg-accented: var(--ui-color-neutral-800);
+  --ui-bg-inverted: var(--ui-color-neutral-600);
 }

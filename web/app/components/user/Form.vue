@@ -101,7 +101,6 @@ async function onSubmit(event: FormSubmitEvent<UserSchema>) {
       <UFormField label="Nome" name="name" required>
         <UInput
           v-model="state.name"
-          variant="soft"
           placeholder="Digite o nome do usuário"
           class="w-full"
         />
@@ -109,7 +108,6 @@ async function onSubmit(event: FormSubmitEvent<UserSchema>) {
       <UFormField label="Email" name="email" required>
         <UInput
           v-model="state.email"
-          variant="soft"
           type="email"
           placeholder="Digite o email do usuário"
           autocomplete="off"
@@ -119,7 +117,6 @@ async function onSubmit(event: FormSubmitEvent<UserSchema>) {
       <UFormField v-if="!isEditing" label="Senha" name="password" required>
         <PasswordInput
           v-model="state.password"
-          variant="soft"
           placeholder="Digite a senha do usuário"
           autocomplete="new-password"
           class="w-full"
@@ -130,7 +127,6 @@ async function onSubmit(event: FormSubmitEvent<UserSchema>) {
     <div class="flex flex-row gap-4 justify-between mt-6">
       <div />
       <UButton
-        variant="soft"
         size="xl"
         type="submit"
         trailing

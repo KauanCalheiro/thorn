@@ -63,7 +63,6 @@ resolveFile();
     <UButton
       v-if="(!isLoading && !disabled) || !disabled"
       type="button"
-      variant="soft"
       color="neutral"
       size="xs"
       icon="lucide:x"

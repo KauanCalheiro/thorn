@@ -73,21 +73,18 @@ watch(search, async (newValue) => {
 
 <template>
   <div
-    class="flex flex-col w-full mx-auto gap-4 py-4 px-8 rounded-lg mb-5 bg-accented/20"
+    class="flex flex-col w-full mx-auto gap-4 py-4 px-8 rounded-lg mb-5 bg"
   >
     <div class="flex flex-col gap-2">
       <BaseTitle v-if="title" :title="title" />
       <div class="flex flex-row gap-4 justify-between w-full">
         <UInput
           icon="i-lucide-search"
-          class="md:w-4/10 rounded-2xl"
+          class="md:w-4/10"
           size="md"
           variant="soft"
           placeholder="Buscar..."
           v-model="search"
-          :ui="{
-            trailing: 'p-0.5',
-          }"
         >
           <template #trailing v-if="search.length > 0" class="p-5">
             <UButton
@@ -103,8 +100,7 @@ watch(search, async (newValue) => {
           icon="material-symbols:add"
           size="md"
           color="primary"
-          variant="soft"
-          class="flex items-center bg-elevated"
+          class="flex items-center"
           @click="emit('add')"
         >
           Novo
@@ -113,16 +109,51 @@ watch(search, async (newValue) => {
     </div>
     <UTable
       ref="table"
-      sticky
       :columns="columns"
       :data="rows"
       :loading="loading"
       @update:sorting="onUpdateSort"
-      class="h-[70dvh]"
-    />
+      class="h-[70dvh] bg-accented/30 rounded-lg"
+      :ui="{
+        thead:
+          'divide-none [&>tr>th:first-child]:rounded-s-lg [&>tr>th:last-child]:rounded-e-lg',
+        tbody: 'divide-none border-none',
+        th: 'divide-none border-none'
+      }"
+    >
+      <template #empty>
+        <div
+          class="flex flex-col h-full items-center justify-center py-10 text-center text-neutral-400"
+        >
+          <UIcon name="solar:notification-lines-remove-bold" size="4rem" />
+          <br />
+          <p class="text-lg text-accented font-bold">
+            Nenhum resultado encontrado
+          </p>
+          <p class="text-sm text-muted font-light">
+            Tente ajustar os filtros ou realizar outra busca.
+          </p>
+          <br />
+          <p class="text-sm text-muted font-light mb-2">
+            Não encontrou o que procurava?<br />
+            Adicione um novo registro:
+          </p>
+          <UButton
+            icon="material-symbols:add"
+            size="md"
+            color="primary"
+            class="flex items-center"
+            @click="emit('add')"
+          >
+            Novo
+          </UButton>
+        </div>
+      </template>
+    </UTable>
     <div class="flex justify-center">
       <UPagination
         :page="currentPage"
+        variant="soft"
         :default-page="
           (table?.tableApi?.getState().pagination.pageIndex || 0) + 1
         "
