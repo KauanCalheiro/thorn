@@ -19,15 +19,15 @@ const search = computed(() => (route.query.search as string) ?? "");
 
 const columns: TableColumn<Exercise>[] = [
   {
-    header: ({ column }) => getTableHeader<Exercise>("ID", column),
+    header: ({ column }) => useSortTableHeader<Exercise>("ID", column),
     accessorKey: "id",
   },
   {
-    header: ({ column }) => getTableHeader<Exercise>("Nome", column),
+    header: ({ column }) => useSortTableHeader<Exercise>("Nome", column),
     accessorKey: "name",
   },
   {
-    header: ({ column }) => getTableHeader<Exercise>("Grupo Muscular", column),
+    header: ({ column }) => useSortTableHeader<Exercise>("Grupo Muscular", column),
     accessorKey: "muscle_group.name",
   },
   useTableActions<Exercise>(emit),

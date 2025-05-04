@@ -20,16 +20,16 @@ const search = computed(() => (route.query.search as string) ?? "");
 
 const columns: TableColumn<User>[] = [
   {
-    header: ({ column }) => getTableHeader<User>("ID", column),
+    header: ({ column }) => useSortTableHeader<User>("ID", column),
 
     accessorKey: "id",
   },
   {
-    header: ({ column }) => getTableHeader<User>("Nome", column),
+    header: ({ column }) => useSortTableHeader<User>("Nome", column),
     accessorKey: "name",
   },
   {
-    header: ({ column }) => getTableHeader<User>("Email", column),
+    header: ({ column }) => useSortTableHeader<User>("Email", column),
     accessorKey: "email",
   },
   useTableActions<User>(emit),
