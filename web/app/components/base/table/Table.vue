@@ -73,7 +73,7 @@ watch(search, async (newValue) => {
 
 <template>
   <div
-    class="flex flex-col w-full mx-auto gap-4 py-4 px-8 rounded-lg shadow-xl/50 mb-5 border-1 border-neutral-800"
+    class="flex flex-col w-full mx-auto gap-4 py-4 px-8 rounded-lg mb-5 bg-accented/20"
   >
     <div class="flex flex-col gap-2">
       <BaseTitle v-if="title" :title="title" />
