@@ -67,7 +67,7 @@ const emits = defineEmits<{
           </NuxtLink>
         </li>
         <li>
-          <BaseButtonLogout text="Sair" />
+          <BaseButtonLogout text="Sair" class="w-full" />
         </li>
       </ul>
     </template>
