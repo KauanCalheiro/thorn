@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { AccordionItem } from "@nuxt/ui";
 import type User from "~~/types/User";
 const user = useSanctumUser<User>().value;
 const route = useRoute();
@@ -17,15 +16,15 @@ const emits = defineEmits<{
   <UAccordion
     :items="[1]"
     :ui="{
-      item: 'bg-neutral-800 px-4 rounded-lg',
+      item: 'bg-accented/20 px-4 rounded-lg',
     }"
   >
     <template #default>
       <div
-        class="flex items-center gap-3 px-1 rounded-xl bg-neutral-800 w-full overflow-hidden"
+        class="flex items-center gap-3 px-1 rounded-xl w-full overflow-hidden"
       >
         <div
-          class="w-12 h-12 rounded-full bg-neutral-700 flex items-center justify-center text-neutral-200 text-lg font-medium overflow-hidden"
+          class="w-12 h-12 rounded-full flex items-center justify-center text-neutral text-lg font-medium overflow-hidden"
         >
           <img
             v-if="user?.picture"
@@ -39,10 +38,10 @@ const emits = defineEmits<{
         </div>
 
         <div class="flex flex-col min-w-0 max-w-[55dvw] overflow-hidden">
-          <span class="font-normal text-neutral-50 truncate">
+          <span class="font-bold truncate">
             {{ user?.name }}
           </span>
-          <span class="text-sm text-neutral-400 truncate">
+          <span class="text-sm font-light truncate">
             {{ user?.email }}
           </span>
         </div>

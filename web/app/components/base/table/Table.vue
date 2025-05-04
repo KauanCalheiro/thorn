@@ -80,7 +80,7 @@ watch(search, async (newValue) => {
       <div class="flex flex-row gap-4 justify-between w-full">
         <UInput
           icon="i-lucide-search"
-          class="shadow-xl/15 md:w-4/10"
+          class="md:w-4/10 rounded-2xl"
           size="md"
           variant="soft"
           placeholder="Buscar..."
@@ -104,7 +104,7 @@ watch(search, async (newValue) => {
           size="md"
           color="primary"
           variant="soft"
-          class="flex items-center shadow-xl/15"
+          class="flex items-center bg-elevated"
           @click="emit('add')"
         >
           Novo

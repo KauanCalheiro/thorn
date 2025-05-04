@@ -28,7 +28,7 @@ const emits = defineEmits<{
   <UAccordion
     :items="items"
     :ui="{
-      item: 'bg-neutral-800 px-4 rounded-lg',
+      item: 'bg-accented/20 px-4 rounded-lg',
     }"
   >
     <template #body="{ item }">
