@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     'nuxt-auth-sanctum',
     '@formkit/auto-animate/nuxt',
     'nuxt-vue3-google-signin',
+    '@vite-pwa/nuxt',
   ],
 
   plugins: [
@@ -43,6 +44,53 @@ export default defineNuxtConfig({
       ],
     },
     baseURL: '/',
+  },
+
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'Thorn',
+      short_name: 'Thorn',
+      description: 'Thorn is a simple, elegant and centered system for gym use',
+      start_url: "/",
+      display: "fullscreen",
+      background_color: "#9956FE",
+      theme_color: "#FFFFFF",
+      icons: [
+        {
+          src: "/pwa-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "any"
+        },
+        {
+          src: "/pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any"
+        },
+        {
+          src: "/pwa-maskable-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/pwa-maskable-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable"
+        }
+      ],
+    },
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
+    devOptions: {
+      enabled: true,
+      type: 'module',
+    }
   },
 
   googleSignIn: {

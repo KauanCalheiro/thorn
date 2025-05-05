@@ -1,4 +1,5 @@
 <template>
+  <NuxtPwaAssets />
   <UApp
     :toaster="{
       position: 'bottom-center',
