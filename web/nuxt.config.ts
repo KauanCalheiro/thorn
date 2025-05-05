@@ -18,6 +18,7 @@ export default defineNuxtConfig({
 
   plugins: [
     '~/plugins/sanctum-listener.ts',
+    '~/plugins/ui-primary.ts',
   ],
 
   css: ['~/assets/css/main.css'],

@@ -1,13 +1,48 @@
 <template>
-    <img
-        :class="[width, 'filter drop-shadow-[1px_0px_0px_#000] dark:drop-shadow-[3px_2px_1px_#000]']"
-        src="public/logo.png"
-        alt="Logo"
-    >
+  <div
+    :class="width"
+    :style="{
+      maskImage: 'url(/logo.png)',
+      WebkitMaskImage: 'url(/logo.png)',
+      maskRepeat: 'no-repeat',
+      WebkitMaskRepeat: 'no-repeat',
+      maskSize: 'contain',
+      WebkitMaskSize: 'contain',
+      backgroundColor: `${
+        colors[color][colorMode.value === 'dark' ? 400 : 500]
+      }`,
+    }"
+  ></div>
 </template>
 
 <script setup lang="ts">
-const {width = 'w-[150px]'} = defineProps<{
-    width?: string
+const { width = "w-[150px] h-13" } = defineProps<{
+  width?: string;
 }>();
+
+const colorMode = useColorMode();
+const appConfig = ref(useAppConfig());
+
+const colors: any = {
+  black: { 400: "#a1a1aa", 500: "#71717a" },
+  red: { 400: "#f87171", 500: "#ef4444" },
+  orange: { 400: "#fb923c", 500: "#f97316" },
+  amber: { 400: "#fbbf24", 500: "#f59e0b" },
+  yellow: { 400: "#facc15", 500: "#eab308" },
+  lime: { 400: "#a3e635", 500: "#84cc16" },
+  green: { 400: "#4ade80", 500: "#22c55e" },
+  emerald: { 400: "#34d399", 500: "#10b981" },
+  teal: { 400: "#2dd4bf", 500: "#14b8a6" },
+  cyan: { 400: "#22d3ee", 500: "#06b6d4" },
+  sky: { 400: "#38bdf8", 500: "#0ea5e9" },
+  blue: { 400: "#60a5fa", 500: "#3b82f6" },
+  indigo: { 400: "#818cf8", 500: "#6366f1" },
+  violet: { 400: "#a78bfa", 500: "#8b5cf6" },
+  purple: { 400: "#c084fc", 500: "#a855f7" },
+  fuchsia: { 400: "#e879f9", 500: "#d946ef" },
+  pink: { 400: "#f472b6", 500: "#ec4899" },
+  rose: { 400: "#fb7185", 500: "#f43f5e" },
+};
+
+const color = computed(() => appConfig.value.ui.colors.primary);
 </script>
