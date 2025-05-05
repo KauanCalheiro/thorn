@@ -25,7 +25,7 @@ const options = ref([
   },
 ]);
 
-const selected = ref(colorMode.preference);
+const selected = ref(colorMode.preference ?? 'dark');
 
 watch(selected, (val) => {
   colorMode.preference = val;
