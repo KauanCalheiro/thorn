@@ -36,7 +36,6 @@ watch(selected, (val) => {
   <div class="space-y-4">
     <URadioGroup
       v-model="selected"
-      legend="Tema"
       :items="options"
       class="gap-2"
       variant="card"
