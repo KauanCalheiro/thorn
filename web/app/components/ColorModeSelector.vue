@@ -48,7 +48,7 @@ watch(selected, (val) => {
     >
       <template #label="{ item }">
         <div
-          class="flex flex-col items-center gap-2 w-[35dvw] max-w-[200px] text-xs p-3.5 rounded-xl"
+          class="flex flex-col items-center gap-6 pb-6 w-[35dvw] max-w-[200px] text-xs p-3.5 rounded-xl"
           :class="item.bg"
         >
           <div
@@ -57,22 +57,22 @@ watch(selected, (val) => {
           >
             <div class="flex items-center gap-2">
               <USkeleton
-                class="w-6 h-6 rounded-full"
+                class="w-10 h-8 rounded-full"
                 :class="item.skeletonClass"
               />
               <div class="space-y-1 w-full">
                 <USkeleton
-                  class="h-2 w-3/4 rounded"
+                  class="h-3 w-3/4 rounded"
                   :class="item.skeletonClass"
                 />
                 <USkeleton
-                  class="h-2 w-1/2 rounded"
+                  class="h-3 w-1/2 rounded"
                   :class="item.skeletonClass"
                 />
               </div>
             </div>
-            <USkeleton class="h-2 w-full rounded" :class="item.skeletonClass" />
-            <USkeleton class="h-2 w-5/6 rounded" :class="item.skeletonClass" />
+            <USkeleton class="h-3 w-full rounded" :class="item.skeletonClass" />
+            <USkeleton class="h-3 w-5/6 rounded" :class="item.skeletonClass" />
           </div>
 
           <div class="text-center flex flex-row gap-2">
