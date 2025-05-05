@@ -1,20 +1,20 @@
 <template>
-  <div class="flex flex-row flex-wrap gap-2 p-4">
+  <div class="flex flex-row justify-center  flex-wrap gap-2 p-4">
     <div
       v-for="color in primaryColors"
       :key="color.value"
-      class="flex flex-col items-center justify-center cursor-pointer w-15 h-15 rounded-md"
+      class="flex flex-col items-center justify-center cursor-pointer w-21 h-21 gap-2.5 rounded-md"
       @click="primary = color"
       :class="{
         'bg-accented': primary?.value === color.value,
       }"
     >
       <span
-        class="inline-block size-5 rounded-full border-2 border-transparent"
+        class="inline-block size-7 rounded-full border-2 border-transparent"
         :style="{
           backgroundColor: color.hex,
         }"
-      ></span>
+      />
       <span class="text-xs text-center capitalize">
         {{ color.text }}
       </span>
