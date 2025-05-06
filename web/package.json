@@ -26,7 +26,6 @@
     "@unhead/vue": "^2.0.3",
     "@vite-pwa/nuxt": "^1.0.0",
     "@vueuse/core": "^13.1.0",
-    "better-sqlite3": "^8.0.0",
     "nuxt": "^3.16.2",
     "nuxt-auth-sanctum": "0.6.6",
     "nuxt-vue3-google-signin": "0.0.11",
